@@ -1,5 +1,5 @@
 ## Endpoints
-_Note that all numbers are listed as strings unless otherwise stated._
+_Note that all numbers are listed as strings unless otherwise stated._  
 `today.json`:`https://data.nba.net/10s/prod/v1/today.json`  
 Under the `links` object in the returned JSON, we can get a number of relevant items:
 

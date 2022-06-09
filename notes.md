@@ -1,25 +1,31 @@
 ## Endpoints
 _Note that all numbers are listed as strings unless otherwise stated._  
-`today.json`:`https://data.nba.net/10s/prod/v1/today.json`  
-Under the `links` object in the returned JSON, we can get a number of relevant items:
+### today.json:`https://data.nba.net/10s/prod/v1/today.json`  
+Under the `links` object in the returned JSON, the strings can be appended to `https://data.nba.net/10s` to produce several JSON endpoints. The ones of interest are:
+- `anchorDate`/`gameDate`: Today's date in *YYYYMMDD* format, used for endpoints that require a date
+- `calendar`: Points a JSON that lists the number of games occuring on a given day
+- `todayScoreboard`: Scores for games with a given date.
+- `teams`/`leagueRosterPlayers`: Not necessary since team IDs and team names are usually provided by the play-by-play and boxscore JSON
+- `pbp`: Provides the play-by-play with periods separated into different URIs. Note that the URI seems to redirect to the scoreboard if a game's play-by-play is accessed before the day it's scheduled
 
 
 #### scoreboard.json:`https://data.nba.net/10s/prod/v1/{{links.anchorDate}}/scoreboard.json`
 Gives us a summary of the games that will take place on the given day. Match data for each game is stored within the `games` array with each element having the following interesting properties:  
-- `seasonYear`(`string`): Year that the season starts  
-- `gameId`(`string`): String used for other data endpoints on a specific game.  
+- `seasonYear`: Year that the season starts  
+- `gameId`: String used for other data endpoints on a specific game.  
 - `arena`(`object`): Contains the location and name of the current arena  
+If there are no games on the given date, then `games` will be an empty array.
 
 #### boxscore.json:`https://data.nba.net/10s/prod/v1/{{links.anchorDate}}/{{gameId}}_boxscore.json`
 Info incomplete. Note that the response time seems unusually long. Relevent properties:  
 - `vTeam`(`object`): Holds information about the visiting team  
-    - `teamId`(`string`): Used for other endpoints  
-    - `triCode`(`string`): 3-letter abbreviation of the team used in broadcasts
-    - `win`(`string`): Number of regular season wins
-    `loss`(`string`): Number of regular season losses
-    - `seriesWin`(`string`): Number of wins in current playoff series
-    - `seriesLoss`(`string`): Number of losses in current playoff series
-    - `score`(`string`): Points scored in the current game
+    - `teamId`: Used for other endpoints  
+    - `triCode`: 3-letter abbreviation of the team used in broadcasts
+    - `win`: Number of regular season wins
+    - `loss`: Number of regular season losses
+    - `seriesWin`: Number of wins in current playoff series
+    - `seriesLoss`: Number of losses in current playoff series
+    - `score`: Points scored in the current game
     - `linescore`(`array`): Points scored by each team for each period
 - `hTeam`(`object`): Holds information about the home team. Contains the same properties as `vTeam`.
 - `previousMatchup`(`object`): Contains the `gameId` and `gameDate` of the previous game in the series.

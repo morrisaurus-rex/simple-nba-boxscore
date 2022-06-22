@@ -1,0 +1,24 @@
+{
+  "name": "nba-api-server",
+  "version": "1.0.0",
+  "description": "Server that collects boxscore information from the NBA's API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morrisaurus-rex/simple-nba-boxscore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morrisaurus-rex/simple-nba-boxscore/issues"
+  },
+  "homepage": "https://github.com/morrisaurus-rex/simple-nba-boxscore#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express.js": "^1.0.0",
+    "typescript": "^4.7.4"
+  }
+}
